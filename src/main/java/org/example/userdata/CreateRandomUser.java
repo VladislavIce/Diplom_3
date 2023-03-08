@@ -1,4 +1,4 @@
-package org.example.pom;
+package org.example.userdata;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class CreateRandomUser {
@@ -17,7 +17,7 @@ public class CreateRandomUser {
         return (RandomStringUtils.randomAlphanumeric(6));
     }
 
-    // Генерим невалидный пароль
+    // Генерим невалидный рандомный пароль
     public String getInvalidRandomPassword() {
         return (RandomStringUtils.randomAlphanumeric(5));
     }
