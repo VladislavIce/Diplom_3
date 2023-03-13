@@ -19,107 +19,85 @@ public class MainPage {
     private final String URL = "https://stellarburgers.nomoreparties.site/";
 
     // Локатор кнопки "Войти в аккаунт"
-    private final By BUTTON_SIGN_IN = By.xpath(".//button[@class='button_button__33qZ0 " +
+    private final By buttonSugnIn = By.xpath(".//button[@class='button_button__33qZ0 " +
             "button_button_type_primary__1O7Bx button_button_size_large__G21Vg']");
 
 
     // Локатор кнопки "Личный кабинет"
-    private final By BUTTON_PERSONAL_AREA = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
+    private final By buttonPersonalArea = By.xpath("//p[@class='AppHeader_header__linkText__3q_va ml-2' and text()='Личный Кабинет']");
 
 
     // Локатор кнопки "Оформить заказ"
-    private final By BUTTON_CHECKOUT = By.xpath(".//button[text()='Оформить заказ']");
+    private final By  buttonCheckout  = By.xpath(".//button[text()='Оформить заказ']");
 
 
     // Локатор кнопки "Булки"
-    private final By ROLLS = By.xpath(".//span[@class='text text_type_main-default' and text()='Булки']");
+    private final By rolls  = By.xpath(".//span[@class='text text_type_main-default' and text()='Булки']");
 
     // Локтор кнопки "Соусы"
-    private final By SAUCES = By.xpath(".//span[@class='text text_type_main-default' and text()='Соусы']");
+    private final By  sauces = By.xpath(".//span[@class='text text_type_main-default' and text()='Соусы']");
 
     // Локатор кнопки "Начинки"
-    private final By TOPPINGS = By.xpath(".//span[@class='text text_type_main-default' and text()='Начинки']");
+    private final By toppings = By.xpath(".//span[@class='text text_type_main-default' and text()='Начинки']");
 
     // Локатор того, что кнопка "Соусы" активна
-    private final By ACTIVE_SAUCE = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc " +
-            "pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Соусы']");
+    private final By  activeButton = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc " +
+            "pt-4 pr-10 pb-4 pl-10 noselect']");
 
-    // Локатор того, что кнопка "Начинки" активна
-    private final By ACTIVE_TOPPINGS = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']");
 
-    // Локатор того, что кнопка "Булки" активна
-    private final By ACTIVE_ROLL = By.xpath("//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc " +
-            "pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']");
 
-    public MainPage(WebDriver driver){
+    public MainPage(WebDriver driver) {
         this.driver = driver;
     }
 
 
     // Открыть главную страницу сайт
-    public void openPage(){
+    public void openPage() {
         driver.get(URL);
     }
 
     // Клик на кнопку "Булки"
     public void clickButtonRolls() {
-        driver.findElement(ROLLS).click();
+        driver.findElement(rolls).click();
     }
 
     // Клик на кнопку "Соусы"
     public void clickButtonSauces() {
-        driver.findElement(SAUCES).click();
+        driver.findElement(sauces).click();
     }
 
     // Клик на кнопку "Начинки"
     public void clickButtonToppings() {
-        driver.findElement(TOPPINGS).click();
+        driver.findElement(toppings).click();
     }
 
     // Клик на кнопку "Войти в аккаунт"
-    public void clickButtonSignIn(){
-        driver.findElement(BUTTON_SIGN_IN).click();
+    public void clickButtonSignIn() {
+        driver.findElement(buttonSugnIn).click();
     }
 
 
     // Клик на кнопку "Личный кабинет"
-    public void clickButtonPersonalArea(){
+    public void clickButtonPersonalArea() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(BUTTON_PERSONAL_AREA));
-        driver.findElement(BUTTON_PERSONAL_AREA).click();
+                .until(ExpectedConditions.elementToBeClickable(buttonPersonalArea ));
+        driver.findElement(buttonPersonalArea ).click();
     }
 
     // Проверям появилась ли кнопка "Оформить заказ", кнопка появляется только у авторизованного пользователя
-    public void checkSuccessfulAuthorization(){
+    public void checkSuccessfulAuthorization() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(BUTTON_CHECKOUT));
-        String text = driver.findElement(BUTTON_CHECKOUT).getText();
-        boolean isTextVisible = driver.findElement(BUTTON_CHECKOUT).isDisplayed();
-            assertEquals("Оформить заказ", text);
-            assertTrue(isTextVisible);
+                .until(ExpectedConditions.elementToBeClickable(buttonCheckout));
+        String text = driver.findElement(buttonCheckout).getText();
+        boolean isTextVisible = driver.findElement(buttonCheckout).isDisplayed();
+        assertEquals("Оформить заказ", text);
+        assertTrue(isTextVisible);
     }
 
-    // Ожидаение элемента на страницу
-    public void waitingElement(){
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.elementToBeClickable(BUTTON_CHECKOUT));
-    }
-
-    // Метод проверят успешный переход в раздел конструктора "Соусы"
-    public void successfulSwitchSectionSauces(){
-        boolean isTextVisible = driver.findElement(ACTIVE_SAUCE).isDisplayed();
+    // Метод проверят успешный переход в разделе конструктор между Соусом, Начинкой, Булкой
+    public void successfulSwitchSectionDesigner() {
+        boolean isTextVisible = driver.findElement(activeButton).isDisplayed();
         Assert.assertTrue(isTextVisible);
     }
 
-    // Метод проверяет успешный переход в раздел констуктора "Начинка"
-    public void successfulSwitchSectionToppings() {
-        boolean isTextVisible = driver.findElement(ACTIVE_TOPPINGS).isDisplayed();
-        Assert.assertTrue(isTextVisible);
-    }
-
-    // Метод проверяет успешный переход в раздел констурктора "Булки"
-    public void successfulSwitchSectionRolls() {
-        boolean isTextVisible = driver.findElement(ACTIVE_ROLL).isDisplayed();
-        Assert.assertTrue(isTextVisible);
-    }
 }

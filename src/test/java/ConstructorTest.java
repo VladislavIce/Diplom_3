@@ -1,14 +1,13 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
-import org.checkerframework.checker.units.qual.A;
 import org.example.browser.ChooseBrowser;
 import org.example.pom.MainPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
 
 public class ConstructorTest {
     protected static WebDriver driver;
@@ -27,7 +26,7 @@ public class ConstructorTest {
         MainPage mainPage = new MainPage(driver);
             mainPage.openPage();
             mainPage.clickButtonSauces();
-            mainPage.successfulSwitchSectionSauces();
+            mainPage.successfulSwitchSectionDesigner();
     }
 
     @DisplayName("Проверить переход к разделу \"Начинки\"")
@@ -35,9 +34,9 @@ public class ConstructorTest {
     @Test
     public void switchSectionTopping() {
         MainPage mainPage = new MainPage(driver);
-            mainPage.openPage();
-            mainPage.clickButtonToppings();
-            mainPage.successfulSwitchSectionToppings();
+        mainPage.openPage();
+        mainPage.clickButtonToppings();
+        mainPage.successfulSwitchSectionDesigner();
     }
 
     @DisplayName("Проверить переход к разделу \"Булки\"")
@@ -49,7 +48,7 @@ public class ConstructorTest {
         mainPage.openPage();
         mainPage.clickButtonToppings();
         mainPage.clickButtonRolls();
-        mainPage.successfulSwitchSectionRolls();
+        mainPage.successfulSwitchSectionDesigner();
     }
 
     @After

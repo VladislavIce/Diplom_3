@@ -23,41 +23,43 @@ public class LoginPage {
     private final By buttonLogin = By.xpath(".//button[text()='Войти']");
 
     // Локатор кнопки "Зарегистрироваться"
-    private final  By BUTTON_REGISTER = By.xpath(".//a[@class='Auth_link__1fOlj' and text()='Зарегистрироваться']");
+    private final By buttonRegister = By.xpath(".//a[@class='Auth_link__1fOlj' and text()='Зарегистрироваться']");
 
     // Локатор кнопки "Восстановить пароль"
-    private final By BUTTON_RECOVERY_PASSWORD = By.xpath(".//a[@class='Auth_link__1fOlj' and text()='Восстановить пароль']");
+    private final By buttonRecoveryPassword = By.xpath(".//a[@class='Auth_link__1fOlj' and text()='Восстановить пароль']");
 
-    public LoginPage(WebDriver driver){
+    public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
     // Метод вводит почту для входа
-    public void enterEmail(String emailValue){
+    public void enterEmail(String emailValue) {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(fieldEmail));
         driver.findElement(fieldEmail).sendKeys(emailValue);
     }
 
     // Метод вводит пароль для входа
-    public void enterPassword(String passwordValue){
+    public void enterPassword(String passwordValue) {
         driver.findElement(fieldPassword).sendKeys(passwordValue);
     }
 
     // Метод кликает на кнопку войти
-    public void clickButtonLogin(){
+    public void clickButtonLogin() {
         driver.findElement(buttonLogin).click();
     }
 
     // Метод кликает по кнопке "Зарегистрироваться"
-    public void clickButtonRegister(){
-        driver.findElement(BUTTON_REGISTER).click();
+    public void clickButtonRegister() {
+        driver.findElement(buttonRegister).click();
     }
 
     // Метод кликает по кнопке "Восстановить пароль"
-    public void clickButtonRecoveryPassword(){
-        driver.findElement(BUTTON_RECOVERY_PASSWORD).click();
+    public void clickButtonRecoveryPassword() {
+        driver.findElement(buttonRecoveryPassword).click();
     }
 
-    public void successLogout(){
+    public void successExitAccount() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(buttonLogin));
         String text = driver.findElement(buttonLogin).getText();

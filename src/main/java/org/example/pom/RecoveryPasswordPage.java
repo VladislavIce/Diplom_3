@@ -8,7 +8,7 @@ public class RecoveryPasswordPage {
 
 
     // Локатор кнопки "Войти"
-    private final By BUTTON_LOGIN = By.xpath(".//a[@class='Auth_link__1fOlj']");
+    private final By buttonLogin = By.xpath(".//a[@class='Auth_link__1fOlj']");
 
     public RecoveryPasswordPage(WebDriver driver){
         this.driver = driver;
@@ -16,7 +16,7 @@ public class RecoveryPasswordPage {
 
     // Метод кликает на кнопку "Войти"
     public void clickButtonLogin(){
-        driver.findElement(BUTTON_LOGIN).click();
+        driver.findElement(buttonLogin).click();
     }
 
 

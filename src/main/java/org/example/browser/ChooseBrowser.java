@@ -1,6 +1,5 @@
 package org.example.browser;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
