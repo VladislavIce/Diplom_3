@@ -7,7 +7,6 @@ import org.example.pom.MainPage;
 import org.example.pom.RecoveryPasswordPage;
 import org.example.pom.RegistrationPage;
 import org.example.userdata.CreateRandomUser;
-import org.example.userdata.CustomSteps;
 import org.example.userdata.User;
 import org.example.userdata.UserCreate;
 import org.junit.After;
@@ -68,7 +67,6 @@ public class UserAuthorizationTest {
     @Description("Проверяем авторизацию через кнопку \"Вход\" в форме регистрации")
     @Test
     public void authorizationButtonRegistrationFormTest(){
-        CustomSteps userSteps = new CustomSteps(driver);
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         RegistrationPage registrationPage = new RegistrationPage(driver);
@@ -86,7 +84,6 @@ public class UserAuthorizationTest {
     @Description("Проверяем авторизацию через кнопку \"Вход\" в форме восстановления пароля")
     @Test
     public void authorizationTheFormRecoveryPasswordTest() {
-        CustomSteps userSteps = new CustomSteps(driver);
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         RecoveryPasswordPage recoveryPasswordPage = new RecoveryPasswordPage(driver);

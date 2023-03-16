@@ -10,16 +10,16 @@ public class ChooseBrowser {
 
     private static String pathToBinaryFile = "C:\\Users\\Pc\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe";
 
-    private static String driver = "webdriver.chrome.driver";
+    private static String webDriver = "webdriver.chrome.driver";
 
     public static WebDriver getBrowser(String browserName) {
         if (browserName.equals("Yandex")) {
-            System.setProperty(driver, pathToDriverYandex);
+            System.setProperty(webDriver, pathToDriverYandex);
             ChromeOptions options = new ChromeOptions();
             options.setBinary(pathToBinaryFile);
             return new ChromeDriver(options);
         } else if (browserName.equals("Chrome")) {
-            System.setProperty(driver, pathToDriverChrome);
+            System.setProperty(webDriver, pathToDriverChrome);
             return new ChromeDriver();
         } else {
             throw new RuntimeException("Введите имя браузера корректно!");

@@ -24,7 +24,7 @@ public class RegisteringNewUserTest {
     public void setUp() {
         // Для браузера Яндекс использовать "Yandex"
         // Для браузера Хром использовтаь "Chrome"
-        driver = ChooseBrowser.getBrowser("Chrome");
+        driver = ChooseBrowser.getBrowser("Yandex");
     }
 
     @DisplayName("Проверить успешную регистрацию")
@@ -64,3 +64,4 @@ public class RegisteringNewUserTest {
         }
     }
 }
+
