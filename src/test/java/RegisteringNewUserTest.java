@@ -56,7 +56,6 @@ public class RegisteringNewUserTest {
         registrationPage.fillThePasswordField(user.getInvalidRandomPassword());
         registrationPage.clickButtonRegister();
         isUserActive = registrationPage.checkRegistrationNotRegistering();
-        System.out.println(isUserActive);
         if(isUserActive != true) {
             AuthorizationUser incompleteUser = new AuthorizationUser(user.getEmail(), user.getInvalidRandomPassword());
             ValidatableResponse responseIncompleteUser = userCreate.successfulAuthorization(incompleteUser);
