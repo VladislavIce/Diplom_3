@@ -4,7 +4,7 @@ import io.restassured.response.ValidatableResponse;
 import org.example.browser.ChooseBrowser;
 import org.example.userdata.CreateRandomUser;
 import org.example.pom.RegistrationPage;
-import org.example.userdata.IncompleteUser;
+import org.example.userdata.AuthorizationUser;
 import org.example.userdata.User;
 import org.example.userdata.UserCreate;
 import org.junit.After;
@@ -20,6 +20,7 @@ public class RegisteringNewUserTest {
     UserCreate userCreate = new UserCreate();
     private String accessToken;
 
+    boolean isUserActive;
     @Before
     public void setUp() {
         // Для браузера Яндекс использовать "Yandex"
@@ -38,6 +39,10 @@ public class RegisteringNewUserTest {
         registrationPage.fillThePasswordField(user.getPassword());
         registrationPage.clickButtonRegister();
         registrationPage.checkRegistration();
+            AuthorizationUser authorizationUser = new AuthorizationUser(user.getEmail(), user.getPassword());
+            ValidatableResponse response = userCreate.successfulAuthorization(authorizationUser);
+            accessToken = userCreate.successfulAuthorization(response);
+            userCreate.deleteUser(accessToken);
     }
 
     @DisplayName("Проверить регистрация с неккоректным паролем")
@@ -50,18 +55,22 @@ public class RegisteringNewUserTest {
         registrationPage.fillTheEmailField(user.getEmail());
         registrationPage.fillThePasswordField(user.getInvalidRandomPassword());
         registrationPage.clickButtonRegister();
-        registrationPage.checkRegistrationNotRegistering();
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-        if(accessToken != null) {
-            IncompleteUser incompleteUser = new IncompleteUser(user.getEmail(), user.getPassword());
-            ValidatableResponse response = userCreate.successfulAuthorization(incompleteUser);
-            accessToken = userCreate.successfulAuthorization(response);
+        isUserActive = registrationPage.checkRegistrationNotRegistering();
+        System.out.println(isUserActive);
+        if(isUserActive != true) {
+            AuthorizationUser incompleteUser = new AuthorizationUser(user.getEmail(), user.getInvalidRandomPassword());
+            ValidatableResponse responseIncompleteUser = userCreate.successfulAuthorization(incompleteUser);
+            accessToken = userCreate.successfulAuthorization(responseIncompleteUser);
             userCreate.deleteUser(accessToken);
         }
+        }
+
+
+     @After
+    public void tearDown() {
+        driver.quit();
+
     }
 }
+
 

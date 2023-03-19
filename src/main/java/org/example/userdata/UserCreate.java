@@ -1,11 +1,9 @@
 package org.example.userdata;
 
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class UserCreate {
@@ -35,7 +33,7 @@ public class UserCreate {
     }
 
 
-    public ValidatableResponse successfulAuthorization(IncompleteUser incompleteUser) {
+    public ValidatableResponse successfulAuthorization(AuthorizationUser incompleteUser) {
         return given().log().all()
                 .contentType(ContentType.JSON)
                 .baseUri(URL)

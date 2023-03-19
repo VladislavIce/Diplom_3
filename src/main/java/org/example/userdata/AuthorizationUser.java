@@ -1,11 +1,11 @@
 package org.example.userdata;
 
-public class IncompleteUser {
+public class AuthorizationUser {
 
     private String email;
     private String password;
 
-    public IncompleteUser(String email, String password) {
+    public AuthorizationUser(String email, String password) {
         this.email = email;
         this.password = password;
     }

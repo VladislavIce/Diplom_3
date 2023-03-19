@@ -87,10 +87,12 @@ public class RegistrationPage {
     }
 
     // Проверяем что пользователь не смог зарегистрироваться
-    public void checkRegistrationNotRegistering(){
+    public boolean checkRegistrationNotRegistering(){
         String text = driver.findElement(errorDuringRegistration).getText();
-        boolean isTextVisible = driver.findElement(errorDuringRegistration).isDisplayed();
+         boolean isTextVisible = driver.findElement(errorDuringRegistration).isDisplayed();
         assertEquals("Некорректный пароль", text);
         assertTrue(isTextVisible);
+        return isTextVisible;
+
     }
 }
